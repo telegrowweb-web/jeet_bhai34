@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,6 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    /* ── BG GLOW ── */
     .bg {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
@@ -26,7 +24,6 @@
         radial-gradient(ellipse at 80% 100%,  rgba(200,0,255,0.08)  0%, transparent 50%);
     }
 
-    /* ── TEXTURE ── */
     .texture {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background-image: radial-gradient(circle, rgba(255,180,0,0.055) 1px, transparent 1px);
@@ -35,7 +32,6 @@
     }
     @keyframes texDrift { 0%{background-position:0 0} 100%{background-position:20px 20px} }
 
-    /* ── SCAN LINE ── */
     .scan {
       position: fixed; left:0; right:0; height:1px;
       background: linear-gradient(90deg, transparent, rgba(255,180,0,0.5), transparent);
@@ -44,7 +40,6 @@
     }
     @keyframes scanMove { 0%{top:-2px;opacity:0;} 5%{opacity:1;} 95%{opacity:.25;} 100%{top:100%;opacity:0;} }
 
-    /* ── TOP BAR ── */
     .top-bar {
       position: fixed; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, #ff6b00, #ffb700, #ff6b00, #ffd600, #ff6b00);
@@ -53,17 +48,14 @@
     }
     @keyframes barFlow { 0%{background-position:0% center} 100%{background-position:300% center} }
 
-    /* ── PAGE ── */
     .page {
       position: relative; z-index: 1;
       height: 100vh; width: 100%;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 18px 20px 22px;
-      gap: 0;
     }
 
-    /* ── TOP BADGE ── */
     .top-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(255,180,0,0.12);
@@ -74,11 +66,11 @@
       text-transform: uppercase;
       margin-bottom: 14px;
       animation: fadeUp .4s ease both;
+      white-space: nowrap;
     }
-    .bd { width:6px; height:6px; border-radius:50%; background:#ffd600; box-shadow:0 0 8px #ffd600; animation:bdPulse 1.4s ease-in-out infinite; }
+    .bd { width:6px; height:6px; border-radius:50%; background:#ffd600; box-shadow:0 0 8px #ffd600; animation:bdPulse 1.4s ease-in-out infinite; flex-shrink:0; }
     @keyframes bdPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
 
-    /* ── POSTER ── */
     .poster-wrap {
       width: 100%; max-width: 320px;
       border-radius: 16px; overflow: hidden;
@@ -94,12 +86,8 @@
       0%,100% { box-shadow: 0 0 0 1px rgba(255,180,0,.10), 0 8px 40px rgba(255,140,0,.30), 0 0 80px rgba(255,100,0,.12); }
       50%      { box-shadow: 0 0 0 1px rgba(255,180,0,.20), 0 12px 56px rgba(255,140,0,.50), 0 0 100px rgba(255,100,0,.22); }
     }
-    .poster-wrap img {
-      width: 100%; height: auto; display: block;
-      object-fit: cover;
-    }
+    .poster-wrap img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-    /* ── VIP TEXT ── */
     .vip-text {
       text-align: center;
       margin-top: 16px;
@@ -111,7 +99,6 @@
       background: linear-gradient(90deg, #ff8c00, #ffd600, #ffb700);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: none;
       filter: drop-shadow(0 0 12px rgba(255,180,0,.5));
       line-height: 1.15;
     }
@@ -123,7 +110,6 @@
     }
     .vip-text p span { color: #ff6b00; font-weight: 800; }
 
-    /* ── SEAT COUNTER ── */
     .seat-row {
       display: flex; align-items: center; gap: 8px;
       background: rgba(255,100,0,.10);
@@ -133,11 +119,12 @@
       animation: fadeUp .4s .22s ease both;
       font-size: 11px; font-weight: 700;
       color: rgba(255,255,255,.45); letter-spacing: .06em;
+      white-space: nowrap;
     }
     .seat-row span { color: #ff8c00; font-weight: 900; font-size: 13px; }
     .fire { font-size: 14px; }
 
-    /* ── CTA BUTTON ── */
+    /* ── CTA BUTTON — FIXED ONE LINE ── */
     .cta-wrap {
       width: 100%; max-width: 320px;
       margin-top: 14px;
@@ -145,16 +132,23 @@
     }
     .btn {
       position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 16px 28px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      padding: 0 20px;
+      height: 52px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #b45309, #d97706, #fbbf24, #fde68a);
       background-size: 200% auto;
       color: #030207;
       font-family: 'Poppins', sans-serif;
-      font-weight: 800; font-size: 15px; letter-spacing: .12em;
-      text-transform: uppercase; text-decoration: none;
+      font-weight: 800;
+      font-size: clamp(12px, 3.8vw, 15px);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      text-decoration: none;
       border: none; cursor: pointer;
       box-shadow: 0 6px 30px rgba(255,180,0,.50);
+      white-space: nowrap;
       animation: btnPulse 2s ease-in-out infinite, gSlide 3s linear infinite;
     }
     .btn::before {
@@ -169,17 +163,21 @@
       50%    {transform:scale(1.04);box-shadow:0 10px 44px rgba(255,180,0,.80);}
     }
     @keyframes gSlide { 0%{background-position:0% center} 100%{background-position:200% center} }
-    .btn-inner { position:relative; z-index:1; display:flex; align-items:center; gap:10px; }
-    .tg { width:20px; height:20px; flex-shrink:0; }
-    .tg path { fill:#030207; }
 
-    /* ── CREDIT ── */
+    .btn-inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .tg { width: 18px; height: 18px; flex-shrink: 0; }
+    .tg path { fill: #030207; }
+
     .credit {
       position: fixed; bottom: 9px; left:0; right:0;
       text-align:center; font-size:11px;
       color:rgba(255,255,255,.18); z-index:100; letter-spacing:.03em;
     }
-    .credit a { color:#fbbf24; text-decoration:none; font-weight:700; }
 
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(12px); }
@@ -188,41 +186,32 @@
 
     /* ── PHONE ≤ 480px ── */
     @media (max-width:480px) {
-      html,body { overflow:hidden; }
-      .page { padding:14px 18px 20px; }
-
-      .top-badge { font-size:8.5px; padding:4px 13px; margin-bottom:11px; letter-spacing:.18em; }
-
-      .poster-wrap { max-width:290px; border-radius:13px; }
-
-      .vip-text { margin-top:13px; }
-      .vip-text h2 { font-size:clamp(17px,5vw,22px); }
-      .vip-text p  { font-size:11px; margin-top:3px; }
-
-      .seat-row { margin-top:10px; padding:6px 15px; font-size:10.5px; }
-      .seat-row span { font-size:12px; }
-
-      .cta-wrap { margin-top:12px; max-width:290px; }
-      .btn { font-size:13.5px; padding:15px 18px; border-radius:11px; }
-
-      .texture {
-        background-image: radial-gradient(circle, rgba(255,180,0,0.09) 1.5px, transparent 1.5px);
-        background-size: 16px 16px;
+      .page { padding: 12px 16px 18px; }
+      .top-badge { font-size: 8px; padding: 4px 12px; margin-bottom: 10px; letter-spacing: .15em; }
+      .poster-wrap { max-width: 100%; border-radius: 12px; }
+      .vip-text { margin-top: 11px; }
+      .vip-text h2 { font-size: clamp(16px, 5vw, 20px); }
+      .vip-text p { font-size: 10.5px; margin-top: 3px; }
+      .seat-row { margin-top: 9px; padding: 6px 14px; font-size: 10px; }
+      .seat-row span { font-size: 11.5px; }
+      .cta-wrap { margin-top: 11px; max-width: 100%; }
+      .btn {
+        height: 50px;
+        font-size: clamp(11px, 3.5vw, 13px);
+        letter-spacing: .08em;
+        border-radius: 10px;
+        padding: 0 16px;
       }
-
-      .credit { font-size:10px; bottom:6px; }
+      .btn-inner { gap: 7px; }
+      .tg { width: 16px; height: 16px; }
+      .credit { font-size: 10px; bottom: 5px; }
     }
 
-    @media (max-width:370px) {
-      .poster-wrap { max-width:260px; }
-      .vip-text h2 { font-size:16px; }
-      .cta-wrap { max-width:260px; }
-      .btn { font-size:12.5px; padding:13px 14px; }
-      .seat-row { font-size:9.5px; padding:5px 12px; }
-      .top-badge { margin-bottom:9px; }
-      .vip-text { margin-top:11px; }
-      .seat-row { margin-top:9px; }
-      .cta-wrap { margin-top:10px; }
+    @media (max-width: 370px) {
+      .btn { height: 48px; font-size: 11px; letter-spacing: .06em; padding: 0 12px; }
+      .tg { width: 15px; height: 15px; }
+      .btn-inner { gap: 6px; }
+      .top-badge { font-size: 7.5px; letter-spacing: .12em; }
     }
 
     /* ── LAPTOP ≥ 768px ── */
@@ -235,7 +224,7 @@
       .seat-row { margin-top:14px; padding:8px 22px; font-size:12px; }
       .seat-row span { font-size:14px; }
       .cta-wrap { margin-top:16px; max-width:380px; }
-      .btn { font-size:16px; padding:17px 34px; border-radius:14px; }
+      .btn { height:56px; font-size:16px; letter-spacing:.12em; padding:0 34px; border-radius:14px; }
     }
   </style>
 </head>
@@ -248,13 +237,11 @@
 
   <main class="page">
 
-    <!-- Top Badge -->
     <div class="top-badge">
       <div class="bd"></div>
       🔥 &nbsp; Exclusive VIP Offer &nbsp; 🔥
     </div>
 
-    <!-- Poster -->
     <div class="poster-wrap">
       <img
         src="https://academylinkx.site/wp-content/uploads/2026/04/TRADING-2026-04-21T151307.948.jpg"
@@ -263,14 +250,11 @@
       />
     </div>
 
-    <!-- VIP Text -->
     <div class="vip-text">
       <h2>VIP Member Joining</h2>
       <p>Only <span>500 Limited</span> Seats Available!</p>
     </div>
 
-    
-    <!-- CTA Button -->
     <div class="cta-wrap">
       <a href="https://t.me/+Zk-wXpRp-Mo4YmQ1" target="_blank" rel="noopener" class="btn">
         <span class="btn-inner">
@@ -283,7 +267,6 @@
     </div>
 
   </main>
-
 
 <!-- Meta Pixel Code -->
 <script>
@@ -301,9 +284,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=584772807772778&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
 
-  <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -319,6 +300,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1597747158105413&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
+
 </body>
 </html>
